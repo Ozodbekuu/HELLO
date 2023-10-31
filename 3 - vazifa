@@ -1,0 +1,157 @@
+# 1 - masala
+
+
+
+class Author:
+    def __init__(self, name):
+        self.name = name
+
+class Genre:
+    def __init__(self, name):
+        self.name = name
+
+class Book:
+    def __init__(self, title, author, genre):
+        self.title = title
+        self.author = author
+        self.genre = genre
+
+    def get_author(self):
+        return self.author.name
+
+    def get_genre(self):
+        return self.genre.name
+
+class LibraryCatalog:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def search_by_author(self, author_name):
+        matching_books = []
+        for book in self.books:
+            if book.get_author() == author_name:
+                matching_books.append(book)
+        return matching_books
+
+    def search_by_genre(self, genre_name):
+        matching_books = []
+        for book in self.books:
+            if book.get_genre() == genre_name:
+                matching_books.append(book)
+        return matching_books
+
+
+
+
+# 2 - masala
+
+
+
+class Employee:
+    def __init__(self, name, employee_id):
+        self.name = name
+        self.employee_id = employee_id
+
+    def calculate_salary(self):
+        raise NotImplementedError("Subclasses must implement calculate_salary() method.")
+
+class Manager(Employee):
+    def __init__(self, name, employee_id, salary):
+        super().__init__(name, employee_id)
+        self.salary = salary
+
+    def calculate_salary(self):
+        return self.salary
+
+class Developer(Employee):
+    def __init__(self, name, employee_id, hourly_rate, hours_worked):
+        super().__init__(name, employee_id)
+        self.hourly_rate = hourly_rate
+        self.hours_worked = hours_worked
+
+    def calculate_salary(self):
+        return self.hourly_rate * self.hours_worked
+
+class Salesperson(Employee):
+    def __init__(self, name, employee_id, base_salary, commission_rate, sales_amount):
+        super().__init__(name, employee_id)
+        self.base_salary = base_salary
+        self.commission_rate = commission_rate
+        self.sales_amount = sales_amount
+
+    def calculate_salary(self):
+        return self.base_salary + (self.commission_rate * self.sales_amount)
+
+
+
+
+# 3 - masala
+
+
+
+class Song:
+    def __init__(self, title, artist, duration):
+        self.title = title
+        self.artist = artist
+        self.duration = duration
+
+    def play(self):
+        print(f"Playing: {self.title} - {self.artist}")
+
+
+class Artist:
+    def __init__(self, name):
+        self.name = name
+
+
+class Album:
+    def __init__(self, title, artist, songs):
+        self.title = title
+        self.artist = artist
+        self.songs = songs
+
+
+class Playlist:
+    def __init__(self, name):
+        self.name = name
+        self.songs = []
+
+    def add_song(self, song):
+        self.songs.append(song)
+
+    def remove_song(self, song):
+        self.songs.remove(song)
+
+    def play_all(self):
+        print(f"Playing {self.name} playlist:")
+        for song in self.songs:
+            song.play()
+
+
+song1 = Song("Song 1", "Artist 1", 180)
+song2 = Song("Song 2", "Artist 2", 210)
+song3 = Song("Song 3", "Artist 3", 195)
+
+artist1 = Artist("Artist 1")
+artist2 = Artist("Artist 2")
+artist3 = Artist("Artist 3")
+
+
+album1 = Album("Album 1", artist1, [song1])
+album2 = Album("Album 2", artist2, [song2, song3])
+
+top_hits = Playlist("Top Hits")
+favorites = Playlist("Favorites")
+
+top_hits.add_song(song1)
+top_hits.add_song(song2)
+favorites.add_song(song3)
+
+top_hits.play_all()
+favorites.play_all()
+
+
+
